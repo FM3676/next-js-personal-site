@@ -1,0 +1,27 @@
+.link-underline {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  left: 0;
+  bottom: 0;
+  transition: width 0.25s ease;
+  -webkit-transition: width 0.25s ease;
+  background: rgb(147 197 253);
+}
+
+.link-underline:hover {
+  background-color: rgb(38 38 38);
+  border-radius: 0.5rem;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
