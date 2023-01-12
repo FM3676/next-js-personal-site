@@ -36,7 +36,10 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             return (
-              <li key={slug} className="py-12">
+              <li
+                key={slug}
+                className="py-12 px-4 cursor-pointer transition duration-100 hover:scale-105 hover:rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
@@ -48,10 +51,10 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                          <h2 className="text-2xl mb-2 font-bold leading-8 tracking-tight">
                             <Link
                               href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
+                              className="text-gray-900  dark:text-gray-100 hover:text-blue-400 dark:hover:text-blue-400 transition-all"
                             >
                               {title}
                             </Link>
@@ -69,7 +72,8 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          // className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          className="text-blue-400 hover:text-blue-500 transition-colors"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
@@ -87,7 +91,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            className="text-blue-400 hover:text-blue-500 "
             aria-label="All posts"
           >
             All Posts &rarr;

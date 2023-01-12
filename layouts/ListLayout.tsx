@@ -89,8 +89,11 @@ export default function ListLayout({
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search articles"
-                className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 
+                text-gray-900 focus:border-blue-500 focus:ring-blue-500
+                dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
               />
+              {/* focus:border-primary-500 focus:ring-primary-500 */}
             </label>
             <svg
               className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
@@ -113,7 +116,10 @@ export default function ListLayout({
           {displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
-              <li key={path} className="py-4">
+              <li
+                key={path}
+                className="py-4 px-4 cursor-pointer transition duration-100 hover:scale-105 hover:rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <dt className="sr-only">Published on</dt>
@@ -123,8 +129,15 @@ export default function ListLayout({
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                      <h3
+                        className="text-2xl font-bold leading-8 tracking-tight mb-2
+                      text-gray-900  dark:text-gray-100 hover:text-blue-400 dark:hover:text-blue-400 transition-all
+                      "
+                      >
+                        <Link
+                          href={`/${path}`}
+                          className="text-gray-900  dark:text-gray-100 hover:text-blue-400 dark:hover:text-blue-400 transition-all"
+                        >
                           {title}
                         </Link>
                       </h3>
@@ -150,3 +163,4 @@ export default function ListLayout({
     </>
   )
 }
+// transition duration-100 hover:scale-105 hover:rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800
