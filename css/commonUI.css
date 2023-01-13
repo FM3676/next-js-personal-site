@@ -25,3 +25,43 @@
 .link-underline:hover::after {
   width: 100%;
 }
+
+.scroll-text-mask {
+  height: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-text-mask span {
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: 3.25rem;
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-repeat: no-repeat;
+  animation-name: scrollText;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes scrollText {
+  40% {
+    transform: translateY(-3rem);
+  }
+  80%,
+  100% {
+    transform: translateY(-6rem);
+  }
+}
+
+.scroll-text-mask span:nth-child(1) {
+  background-image: linear-gradient(45deg, #0ecffe, 50%, #07a6f1);
+  animation-delay: 0s;
+}
+.scroll-text-mask span:nth-child(2) {
+  background-image: linear-gradient(45deg, #8a7cfb, 50%, #f45f7f);
+  animation-delay: 1.25s;
+}
