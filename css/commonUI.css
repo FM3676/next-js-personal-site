@@ -1,3 +1,8 @@
+.hover-gray-bg:hover {
+  background-color: rgb(38 38 38);
+  border-radius: 0.5rem;
+}
+
 .link-underline {
   position: relative;
   overflow: hidden;
@@ -15,11 +20,6 @@
   transition: width 0.25s ease;
   -webkit-transition: width 0.25s ease;
   background: rgb(147 197 253);
-}
-
-.link-underline:hover {
-  background-color: rgb(38 38 38);
-  border-radius: 0.5rem;
 }
 
 .link-underline:hover::after {

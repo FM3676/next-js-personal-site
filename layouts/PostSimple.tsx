@@ -1,3 +1,4 @@
+import { Fira_Code } from '@next/font/google'
 import { useState, ReactNode } from 'react'
 import { Comments } from 'pliny/comments'
 import { formatDate } from 'pliny/utils/formatDate'
@@ -16,6 +17,12 @@ interface LayoutProps {
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
 }
+
+const FiraCode = Fira_Code({
+  weight: '300',
+  display: 'optional',
+  variable: '--font-fira-code',
+})
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
   const [loadComments, setLoadComments] = useState(false)
@@ -45,7 +52,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div
+                className={`prose ${FiraCode.variable} max-w-none pt-10 pb-8 dark:prose-dark font-firaCode`}
+              >
+                {children}
+              </div>
             </div>
             {siteMetadata.comments && (
               <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
@@ -61,7 +72,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   <div className="pt-4 xl:pt-8">
                     <Link
                       href={`/${prev.path}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      className="text-blue-400 hover:text-blue-500"
                       aria-label={`Previous post: ${prev.title}`}
                     >
                       &larr; {prev.title}
@@ -72,7 +83,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   <div className="pt-4 xl:pt-8">
                     <Link
                       href={`/${next.path}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      className="text-blue-400 hover:text-blue-500"
                       aria-label={`Next post: ${next.title}`}
                     >
                       {next.title} &rarr;
