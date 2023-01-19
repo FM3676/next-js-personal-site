@@ -6,11 +6,11 @@ const IndexPageSelfInfo = () => {
       <h1 className="font-bold text-5xl md:text-7xl mb-4">
         Hi, I am <span className="text-blue-500">Jack Fan</span>
       </h1>
-      <h2 className="font-bold text-4xl h-12 flex items-center">
-        I am
-        <div className="scroll-text-mask flex-1 px-2 ">
-          <span style={{ ['--order' as any]: 0 }}>a Web Developer</span>
-          <span style={{ ['--order' as any]: 1 }}>a Student</span>
+      <h2 className="font-bold text-4xl flex flex-wrap items-center">
+        <p className="whitespace-pre">I am </p>
+        <div className="scroll-text-mask flex-1 ">
+          <span>a Web Developer</span>
+          <span>a Student</span>
         </div>
       </h2>
       <p>
