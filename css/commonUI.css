@@ -23,6 +23,7 @@
 
 .scroll-text-mask {
   height: 3rem;
+  min-width: 20rem;
   position: relative;
   overflow: hidden;
 }
