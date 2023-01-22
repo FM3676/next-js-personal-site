@@ -1,6 +1,6 @@
-import { Fira_Code } from '@next/font/google'
+import { Fira_Sans } from '@next/font/google'
 import { useState, ReactNode } from 'react'
-import { Comments } from 'pliny/comments'
+// import { Comments } from 'pliny/comments'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
@@ -18,14 +18,10 @@ interface LayoutProps {
   prev?: { path: string; title: string }
 }
 
-const FiraCode = Fira_Code({
-  weight: '300',
-  display: 'optional',
-  variable: '--font-fira-code',
-})
+const FiraSans = Fira_Sans({ weight: '600', variable: '--font-fira-sans', display: 'auto' })
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const [loadComments, setLoadComments] = useState(false)
+  // const [loadComments, setLoadComments] = useState(false)
 
   const { path, slug, date, title } = content
 
@@ -53,7 +49,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               <div
-                className={`prose ${FiraCode.variable} max-w-none pt-10 pb-8 dark:prose-dark font-firaCode`}
+                className={`prose prose-code:font-firaSans  max-w-none pt-10 pb-8 dark:prose-dark ${FiraSans.variable} font-firaSans`}
               >
                 {children}
               </div>
