@@ -28,7 +28,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...fontFamily.sans],
-        firaCode: ['var(--font-fira-code)', ...fontFamily.sans],
+        // firaCode: ['var(--font-fira-code)', ...fontFamily.sans],
+        firaSans: ['var(--font-fira-sans)', ...fontFamily.sans],
       },
       colors: {
         primary: colors.teal,
