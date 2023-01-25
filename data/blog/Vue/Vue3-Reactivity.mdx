@@ -49,7 +49,13 @@ console.log(total) // 10
 
 total 的值并不会发生更新，所以要如何储存 total 的值和他的计算方式，才能在 price 或者 quantity 发生改变的时候，将 total 值重新计算一次呢？
 
-#### How to save the total calculation and run it again when price or quantity updates？
+### How to save the total calculation and run it again when price or quantity updates？
+
+思路如下：
+
+1. 假设一个变量为`x`，它在别的代码中被使用，例如`let a = x + y`，则我们将这条代码储存起来，这条被储存的代码称作**effect**。他会被用于以后当`x`值发生改变时重新计算出新的`a`值。
+2. 将`effect`储存起来，并将这条`effect`与`x`关联后储存起来的函数（`x`可能有很多个相关的`effect`，这样所有和`x`值相关的变量都能得到更新）乘坐`track`。
+3. 当`x`值变化后，运行所有与`x`相关的`effect`的函数称为`trigger`。
 
 首先，先确认第一步，这次把代码储存在某种 storage 里。
 
@@ -60,7 +66,7 @@ let total = price * quantity
 
 然后运行这条代码，并且之后，会再次运行这个储存了的代码。并且我们可能不止保存了一种功能(代码)。
 
-所以再次写一遍上面的代码，这次在一个 anonymous function 中计算我们的总数，并把它储存在 effect 里。并且这条就是我们要保存的代码。
+所以再次写一遍上面的代码，这次在一个 anonymous function 中计算我们的总数，并把它储存在 `effect` 里。并且这条就是我们要保存的代码。
 
 ```js
 let price = 5
@@ -72,7 +78,7 @@ let effect = function () {
 }
 ```
 
-当我们想要保存 effect 中的代码的时候（整个 function），我们需要调用 track。
+当我们想要保存 `effect` 中的代码的时候（整个 function），我们需要调用 `track`。
 
 ```js
 let effect = function () {
@@ -82,7 +88,7 @@ let effect = function () {
 track() // Save this code
 ```
 
-然后运行 effect 进行首次计算，之后的某个时刻，我们调用 trigger 来运行所有储存了的代码。
+然后运行 `effect` 进行首次计算，之后的某个时刻，我们调用 `trigger` 来运行所有储存了的代码。
 
 ```js
 let effect = function() { // This is the code we want to save。
@@ -94,7 +100,7 @@ effect() // Run this effect
 trigger() // Run all the code I've saved
 ```
 
-现在需要储存 effects，使用 dep 变量，它表示依赖关系，是一个 Set 集合，然后为了跟踪(track)我们的依赖，我们将 effect 添加到 Set 中
+现在需要储存 `effects`，使用 `dep` 变量，它表示依赖关系，是一个 `Set` 集合，然后为了跟踪(track)我们的依赖，我们将 effect 添加到 Set 中
 
 ```js
 let dep = new Set() // To store our effects
@@ -138,7 +144,7 @@ effect()
 
 **现在，尝试运行这段代码**
 
-设定 total 为 10，将 quantity 修改为 2 后，查看 total 依然会是 10，但如果运行 trigger 后就会变成 15
+设定 `total` 为 10，将 `quantity` 修改为 2 后，查看 `total` 依然会是 10，但如果运行 `trigger` 后就会变成 15
 
 ![1](/static/images/Vue/Vue3-Reactivity/1.png)
 
@@ -321,3 +327,5 @@ effect()
 ```
 
 ![4](/static/images/Vue/Vue3-Reactivity/Data-Structure-of-Deps-Storage.png)
+
+[Vue 3 Reactivity - Vue 3 Reactivity | Vue Mastery](https://www.vuemastery.com/courses/vue-3-reactivity/vue3-reactivity/)
