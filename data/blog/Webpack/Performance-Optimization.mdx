@@ -46,13 +46,13 @@ summary: 'In this article we learn how to analyze and optimize performace'
 
 ### 什么叫做模块解析？
 
-![Performance-Optimization-1](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-1.png)
+![Performance-Optimization-1](/static/images/Webpack/Performance-Optimization/Performance-Optimization-1.png)
 
 模块解析包括：抽象语法树分析、依赖分析、模块语法替换
 
 ### 不做模块解析会怎样？
 
-![Performance-Optimization-2](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-2.png)
+![Performance-Optimization-2](/static/images/Webpack/Performance-Optimization/Performance-Optimization-2.png)
 
 如果某个模块不做解析，该模块经过 loader 处理后的代码就是最终代码。
 
@@ -171,7 +171,7 @@ loader.pitch = function (filePath) {
 module.exports = loader
 ```
 
-![Performance-Optimization-3](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-3.png)
+![Performance-Optimization-3](/static/images/Webpack/Performance-Optimization/Performance-Optimization-3.png)
 
 如图，通常我们会认为，源代码在 loaders 内的流向是 3 -> 2 -> 1。但实际上在开始这个流程之前，还会把文件路径传递给 `loader1.pitch`，如果没有返回结果那么就会交给 `loader2.pitch`，以此类推，然后开启我们熟悉的 3 -> 2 -> 1 的过程。
 
@@ -253,7 +253,7 @@ module.exports = {
 
 1. 先单独的打包公共模块
 
-![Performance-Optimization-4](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-4.png)
+![Performance-Optimization-4](/static/images/Webpack/Performance-Optimization/Performance-Optimization-4.png)
 
 公共模块会被打包成为动态链接库(dll Dynamic Link Library)，并生成资源清单。当代码运行到需要公共模块的时候就会从资源清单里找到对应的资源路径去获取，而不会把这段代码也放在当前运行的文件内。
 
@@ -410,7 +410,7 @@ module.exports = {
 > 实际上，webpack 在内部是使用`SplitChunksPlugin`进行分包的
 > 过去有一个库`CommonsChunkPlugin`也可以实现分包，不过由于该库某些地方并不完善，到了`webpack4`之后，已被`SplitChunksPlugin`取代
 
-![Performance-Optimization-5](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-5.png)
+![Performance-Optimization-5](/static/images/Webpack/Performance-Optimization/Performance-Optimization-5.png)
 
 从分包流程中至少可以看出以下几点：
 
@@ -844,7 +844,7 @@ gzip 是一种压缩文件的算法，文件经过压缩后再传输就可以减
 
 ### B/S 结构中的压缩传输
 
-![Performance-Optimization-6](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-6.png)
+![Performance-Optimization-6](/static/images/Webpack/Performance-Optimization/Performance-Optimization-6.png)
 
 优点：传输效率可能得到大幅提升
 
@@ -854,4 +854,4 @@ gzip 是一种压缩文件的算法，文件经过压缩后再传输就可以减
 
 使用`compression-webpack-plugin`插件对打包结果进行预压缩，可以移除服务器的压缩时间
 
-![Performance-Optimization-7](../../../public/static/images/Webpack/Performance-Optimization/Performance-Optimization-7.png)
+![Performance-Optimization-7](/static/images/Webpack/Performance-Optimization/Performance-Optimization-7.png)

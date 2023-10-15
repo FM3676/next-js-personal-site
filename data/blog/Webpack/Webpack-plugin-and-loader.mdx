@@ -15,25 +15,25 @@ Webpack 做的事情，仅仅是分析出各种模块的依赖关系，然后形
 
 loader 本质上是一个函数，它的作用是将某个源码字符串转换成另一个源码字符串返回。
 
-![Webpack-plugin-and-loader-1](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-1.png)
+![Webpack-plugin-and-loader-1](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-1.png)
 
 loader 函数的将在模块解析的过程中被调用，以得到最终的源码。
 
 **全流程：**
 
-![Webpack-plugin-and-loader-2](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-2.png)
+![Webpack-plugin-and-loader-2](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-2.png)
 
 **chunk 中解析模块的流程：**
 
-![Webpack-plugin-and-loader-3](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-3.png)
+![Webpack-plugin-and-loader-3](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-3.png)
 
 **chunk 中解析模块的更详细流程：**
 
-![Webpack-plugin-and-loader-4](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-4.png)
+![Webpack-plugin-and-loader-4](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-4.png)
 
 **处理 loaders 流程：**
 
-![Webpack-plugin-and-loader-5](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-5.png)
+![Webpack-plugin-and-loader-5](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-5.png)
 
 loader 会在读取文件内容后，获取到符合匹配规则的文件的源代码，然后经过处理后返回新的处理后的源代码。
 
@@ -308,7 +308,7 @@ loader 的功能定位是转换代码，而一些其他的操作难以使用 loa
 
 这种类似的功能需要把功能嵌入到 webpack 的编译流程中，而这种事情的实现是依托于 plugin 的
 
-![Webpack-plugin-and-loader-6](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-6.png)
+![Webpack-plugin-and-loader-6](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-6.png)
 
 plugin 的**本质**是一个带有 apply 方法的对象
 
@@ -342,7 +342,7 @@ compiler 对象是在初始化阶段构建的，整个 webpack 打包期间只�
 
 apply 方法会在**创建好 compiler 对象后调用**，并向方法传入一个 compiler 对象
 
-![Webpack-plugin-and-loader-7](../../../public/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-7.png)
+![Webpack-plugin-and-loader-7](/static/images/Webpack/Webpack-plugin-&-loader/Webpack-plugin-and-loader-7.png)
 
 compiler 对象提供了大量的钩子函数（hooks，可以理解为事件），plugin 的开发者可以注册这些钩子函数，参与 webpack 编译和生成。
 
