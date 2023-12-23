@@ -42,7 +42,7 @@ To sum up, there are actually two major types of scenarios that limit quick resp
 
 When we usually browse the web, the web page is actually drawn by the browser, just like a painter drawing.
 
-![React-overall-architecture-1](../../../public/static/images/React/React-overall-architecture-1.jpg)
+![React-overall-architecture-1](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-1.jpg)
 
 The web pages we usually browse often have some moving things in them, such as carousels, blinds, etc. The essence is that the browser is constantly drawing.
 
@@ -50,7 +50,7 @@ Currently, the refresh rate of most devices is 60 FPS, which means that it needs
 
 When the browser draws a frame, it actually has a lot of things to do:
 
-![React-overall-architecture-2](../../../public/static/images/React/React-overall-architecture-2.png)
+![React-overall-architecture-2](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-2.png)
 
 The tasks in the picture above are called "rendering pipelines". Every time the pipeline is executed, it generally requires the above steps, but it does not mean that all tasks need to be executed every time:
 
@@ -66,7 +66,7 @@ This problem existed before Reactv16, where JS code took too long to execute. In
 
 Suppose we have the following DOM hierarchy:
 
-![React-overall-architecture-3](../../../public/static/images/React/React-overall-architecture-3.png)
+![React-overall-architecture-3](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-3.png)
 
 Then the structure converted into a virtual DOM object is roughly as follows:
 
@@ -115,7 +115,7 @@ Then the structure converted into a virtual DOM object is roughly as follows:
 
 Before the React v16 version, when comparing two virtual DOM trees, it was necessary to traverse the above structure. At this time, only recursion could be used, and this recursion could not be interrupted. One road would go to black, thus This causes JS execution time to be too long.
 
-![React-overall-architecture-4](../../../public/static/images/React/React-overall-architecture-4.png)
+![React-overall-architecture-4](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-4.png)
 
 This architecture model is officially called the Stack architecture model, because it uses recursion and will constantly open new function stacks.
 
@@ -155,13 +155,13 @@ Fiber is essentially an object, but the difference from the previous React eleme
 
 As shown below:
 
-![React-overall-architecture-5](../../../public/static/images/React/React-overall-architecture-5.png)
+![React-overall-architecture-5](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-5.png)
 
 One of the biggest advantages of using a linked list structure is that the process can be interrupted when reconciling the entire tree.
 
 When it is found that one frame time is no longer enough, JS cannot continue to be executed and the next frame needs to be rendered, the execution of JS will be interrupted at this time and the next frame will be rendered first. After rendering is completed, come back and complete the JS calculations that were not completed last time.
 
-![React-overall-architecture-6](../../../public/static/images/React/React-overall-architecture-6.png)
+![React-overall-architecture-6](../../../public/static/images/React/React-overall-architecture/React-overall-architecture-6.png)
 
 The official also provides a comparison example between Stack architecture and Fiber architecture: https://claudiopro.github.io/react-fiber-vs-stack-demo/
 
