@@ -132,7 +132,7 @@ ReactDOM.createRoot(rootElement).render(<App />)
 
 当执行 `ReactDOM.createRoot` 的时候，会创建如下的结构：
 
-![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-1](../../../public/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-1.png)
+![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-1](/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-1.png)
 
 > 在这里，`HostRootFiber` 便是 `<div id="root"></div>`
 
@@ -140,7 +140,7 @@ ReactDOM.createRoot(rootElement).render(<App />)
 
 接下来进入到 `mount` 流程，该流程会基于每个 React 元素以深度优先的原则依次生成 `wipFiberNode`，并且每一个 `wipFiberNode` 会连接起来，如下图所示：
 
-![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-2](../../../public/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-2.png)
+![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-2](/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-2.png)
 
 生成的 `wipFiberTree` 里面的每一个 `FiberNode` 会和 `currentFiberTree` 里面的 `FiberNode` 进行关联，关联的方式就是通过 `alternate`。但是目前 `currentFiberTree` 里面只有一个 `HostRootFiber`，因此就只有这个 `HostRootFiber` 进行了 `alternate` 的关联。
 
@@ -173,19 +173,19 @@ ReactDOM.createRoot(rootElement).render(<App />)
 >
 > 如果要描述整个过程的话，可以这样说：当 wip FiberTree 生成并完成协调/对比后，render 阶段结束，接下来 React 会在 Commit 阶段将变更应用到 DOM，从而完成用户界面的更新。此时，`FiberRootNode.current`会指向新的 Fiber 树，确保 React 可以为后续的更新提供正确的基准。
 
-![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-3](../../../public/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-3.png)
+![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-3](/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-3.png)
 
 ### update Progress
 
 点击 p 元素，会触发更新，这一操作就会开启 update 流程，此时就会生成一颗新的 wip Fiber Tree，流程和之前是一样的
 
-![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-4](../../../public/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-4.png)
+![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-4](/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-4.png)
 
 新的 `wipFiberTree` 里面的每一个 `FiberNode` 和 `currentFiberTree` 的每一个 `FiberNode` 通过 alternate 属性进行关联。
 
 当 `wipFiberTree` 生成完毕后，就会经历和之前一样的流程，`FiberRootNode` 会被传递给 `Renderer` 进行渲染，此时宿主环境所渲染出来的真实 UI 对应的就是左边 `wipFiberTree` 所对应的 DOM 结构，`FiberRootNode.current` 就会指向左边这棵树，右边的树就再次成为了新的 `wipFiberTree`
 
-![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-5](../../../public/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-5.png)
+![Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-5](/static/images/React/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism/Understanding-React-Fiber-Architecture-and-Double-Buffering-Mechanism-5.png)
 
 这个就是 Fiber 双缓存的工作原理。
 

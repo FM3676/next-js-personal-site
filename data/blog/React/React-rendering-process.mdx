@@ -34,7 +34,7 @@ const UI = commit(state) // 根据上一步计算出来的 state 渲染出 UI
 
 每个阶段对应不同的组件：
 
-![React-rendering-process-1](../../../public/static/images/React/React-rendering-process/React-rendering-process-1.png)
+![React-rendering-process-1](/static/images/React/React-rendering-process/React-rendering-process-1.png)
 
 - 调度器(Scheduer)：调度任务，为任务排序优先级，让优先级高的任务先进入到 Reconciler
 - 协调器(Reconciler)：生成 Fiber 对象，收集副作用，找出哪些节点发生了变化，打上不同的 flags，著名的 diff 算法也是在这个组件中执行的。
@@ -68,7 +68,7 @@ export default () => {
 
 如下图所示：
 
-![React-rendering-process-2](../../../public/static/images/React/React-rendering-process/React-rendering-process-2.png)
+![React-rendering-process-2](/static/images/React/React-rendering-process/React-rendering-process-2.png)
 
 ## Scheduler 调度器
 
@@ -93,7 +93,7 @@ function callback(IdleDeadline) {
 window.requestIdleCallback(callback)
 ```
 
-![React-rendering-process-3](../../../public/static/images/React/React-rendering-process/React-rendering-process-3.png)
+![React-rendering-process-3](/static/images/React/React-rendering-process/React-rendering-process-3.png)
 
 打开控制台，可以看到他会打印出当前帧绘制完毕后所剩余的时间，但值得注意的是，有的是 16 以内，但也有大于 16 例如 49、50 的，为什么会这样呢？
 
@@ -137,7 +137,7 @@ window.requestIdleCallback(callback)
 ```
 
 执行结果如下，可以发现，基本上每一帧的剩余时间都不会大于 16.66 了。
-![React-rendering-process-4](../../../public/static/images/React/React-rendering-process/React-rendering-process-4.png)
+![React-rendering-process-4](/static/images/React/React-rendering-process/React-rendering-process-4.png)
 
 ### Simulate 'Scheduler'
 
@@ -186,7 +186,7 @@ window.requestIdleCallback(callback)
 
 那么运行结果就会如下：
 
-![React-rendering-process-5](../../../public/static/images/React/React-rendering-process/React-rendering-process-5.png)
+![React-rendering-process-5](/static/images/React/React-rendering-process/React-rendering-process-5.png)
 
 可以看到，每一个任务就在剩余的空闲时间中穿插执行，这样就避免了阻塞。
 
@@ -297,7 +297,7 @@ function performUnitOfWork(fiberNode) {
 
 最后来看一张图：
 
-![React-rendering-process-6](../../../public/static/images/React/React-rendering-process/React-rendering-process-6.png)
+![React-rendering-process-6](/static/images/React/React-rendering-process/React-rendering-process-6.png)
 
 ## Renderer 渲染器
 
@@ -311,7 +311,7 @@ Renderer 工作的阶段被称之为 commit 阶段。该阶段会将各种副作
 - Mutation 阶段
 - Layout 阶段
 
-![React-rendering-process-7](../../../public/static/images/React/React-rendering-process/React-rendering-process-7.png)
+![React-rendering-process-7](/static/images/React/React-rendering-process/React-rendering-process-7.png)
 
 ## 真题解答
 
