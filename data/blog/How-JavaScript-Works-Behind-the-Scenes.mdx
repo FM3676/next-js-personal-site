@@ -1,7 +1,7 @@
 ---
 title: How JavaScript Works Behind the Scenes
 date: '2023-1-28'
-tags: ['JavaScript', 'tutorial', 'behine the scene']
+tags: ['JavaScript', 'tutorial', 'Behind the scene']
 draft: false
 summary: 'In this article we learn How JavaScript Works Behind the Scenes, and what is JavScript Engine and How it works.'
 ---
@@ -221,8 +221,8 @@ JavaScript 曾经是纯粹的解释型语言，但它的效率会非常低，所
 1. `var`声明会发生变量提升，提升初值为`undefined`。例如
 
    ```js
-   console.log(b);
-   var b = 0;
+   console.log(b)
+   var b = 0
    ```
 
    结果会是`undefined`
@@ -270,13 +270,13 @@ this 关键词不是静态的，他取决于函数怎么被调用，其值在函
 
 ```js
 const jonas = {
-  firstName: "Jonas",
+  firstName: 'Jonas',
   greet: () => {
-    console.log(this);
-    console.log(this.firstName);
+    console.log(this)
+    console.log(this.firstName)
   },
-};
-jonas.greet();
+}
+jonas.greet()
 ```
 
 以上代码运行的结果为
@@ -291,7 +291,7 @@ undefined
 同时，上文提到的，使用`var`定义变量会添加 Window 对象的属性。例子如下，添加下一行代码
 
 ```js
-var firstName = "ABC";
+var firstName = 'ABC'
 ```
 
 如果现在再去执行，会发现输出为`ABC`，因为`Window`对象上的属性多了一个 `firstName`，自然就可以调用上面的值。
@@ -302,49 +302,49 @@ var firstName = "ABC";
 
 ```js
 const jonas = {
-  firstName: "Jonas",
+  firstName: 'Jonas',
   greet: function () {
     const g = function () {
-      console.log(this);
-      console.log(this.firstName);
-    };
-    g();
+      console.log(this)
+      console.log(this.firstName)
+    }
+    g()
   },
-};
-jonas.greet();
+}
+jonas.greet()
 ```
 
 这段代码里，`g`是无法读取到`jonas`为`this`的，因为定义它的环境是一个 function，是有自己的作用域的，而这个作用域内的`this`并没有`firstName`。所以时会报错的
 
 ```js
 const jonas = {
-  firstName: "Jonas",
+  firstName: 'Jonas',
   greet: function () {
-    const self = this;
+    const self = this
     const g = function () {
-      console.log(self);
-      console.log(self.firstName);
-    };
-    g();
+      console.log(self)
+      console.log(self.firstName)
+    }
+    g()
   },
-};
-jonas.greet();
+}
+jonas.greet()
 ```
 
 这样就可以正确获取到`firstName`，因为它暂存了`this`为`self`，还可以利用 Arrow Functions 来解决。
 
 ```js
 const jonas = {
-  firstName: "Jonas",
+  firstName: 'Jonas',
   greet: function () {
     const g = () => {
-      console.log(this);
-      console.log(this.firstName);
-    };
-    g();
+      console.log(this)
+      console.log(this.firstName)
+    }
+    g()
   },
-};
-jonas.greet();
+}
+jonas.greet()
 ```
 
 Arrow Functions 的`this`会指向其父级作用域的`this`，也就是`greet`这个函数的`this`，就是`jonas`这个 Object。
