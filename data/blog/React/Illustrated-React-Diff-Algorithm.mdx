@@ -380,7 +380,7 @@ returnFiber: Fiber,
     // If you change this code, also update reconcileChildrenIterator() which
     // uses the same algorithm.
 ｝
-```
+
 
 将上面的注视翻译成中文如下：
 
@@ -441,3 +441,4 @@ returnFiber: Fiber,
 > 由于双端 `diff` 需要向前查找节点，但每个 `FiberNode` 节点上都没有反向指针，即前一个 `FiberNode` 通过 `sibling` 属性指向后一个 `FiberNode`，只能从前往后遍历，而不能反过来，因此该算法无法通过双端搜索来进行优化。
 >
 > React 想看下现在用这种方式能走多远，如果这种方式不理想，以后再考虑实现双端 `diff`。React 认为对于列表反转和需要进行双端搜索的场景是少见的，所以在这一版的实现中，先不对 bad case 做额外的优化。
+```
